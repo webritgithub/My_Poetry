@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musafir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            background: linear-gradient(135deg, #6e7dff, #5db7ff);
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #fff;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #4caf50;
+            border-radius: 5px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 750px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: #5db7ff;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        #rate {
+            width: 150px;
+        }
+
+        #rate-value {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .poetry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .poetry {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f9f9f9;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .poetry:hover {
+            background: #f1f1f1;
+        }
+
+        h2 {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #5db7ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4caf50;
+        }
+
+        .controls select,
+        .controls input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .controls select:focus,
+        .controls input:focus {
+            border-color: #5db7ff;
+        }
+        h1 {
+            font-family: 'Sacramento';
+            font-size: 48px; /* You can adjust the size */
+            color: white; /* Choose a color for the text */
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Center the text */
+        }
+        .poetry-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                flex: none;
+                width: 100%; /* Make navbar items full-width on small screens */
+                text-align: left;
+                padding: 12px 20px;
+            }
+
+            .navbar a:not(:last-child) {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Musafir</h1>
+        <a href="#">Home</a>
+        <a href="#">Settings</a>
+        <a href="#">Favourites</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Search your mood...">
+    </div>
+
+    <div class="container">
+        <h1>Popular</h1>
+
+        <!-- Controls for voice and speed -->
+        <div class="controls">
+            <label for="voice-select">Language:</label>
+            <select id="voice-select">
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+            </select>
+
+            <label for="rate">Speed:</label>
+            <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+            <span id="rate-value">1.0x</span>
+        </div>
+
+        <div class="poetry-list">
+            <div class="poetry" data-poem="Khule aasamaan me mein ud jau kahi Un parindo ke bich kho jau kahi ,Hawao ke sang beh jau kahi toh badalo ke bich reh jau kahi ,Khudko me pa lu in parwato me kahi Bas jau me in vadiyo me kahi ,Dhundne se bhi na dhund paye koi aawaaro ki tarah khule aasamaan me mein ud jau kahi">
+                <h2>Khule aasamaan</h2>
+                <img src="https://thumbs.dreamstime.com/b/beautiful-mountain-landscape-three-birds-flying-sky-soaring-over-valley-river-running-scene-serene-324262523.jpg" alt="Woods" class="poetry-image">
+                <p>Khule aasamaan me mein ud jau kahi
+                    Un parindo ke bich kho jau kahi
+                    Hawao ke sang beh jau kahi toh badalo ke bich reh jau kahi
+                    Khudko me pa lu in parwato me kahi 
+                    Bas jau me in vadiyo me kahi 
+                    Dhundne se bhi na dhund paye koi aawaro ki tarah khule aasamaan me mein ud jau kahi....</p>
+                <button class="speak-button">Speak</button>
+            </div>
+        
+            <div class="poetry" data-poem="Khitab ke panno me likh du meri ye daasata Kalam se baya kar du mere dil ke in alfaso ko Armaan hai toh kai sare kuch amar kar du toh kuch dafan kar duu">
+                <h2>Kitab</h2>
+                <img src="https://i.pinimg.com/550x/1b/5e/0a/1b5e0aea42bc0c0d70f727c255d93b1b.jpg" alt="Night" class="poetry-image">
+                <p>Khitab ke panno me likh du meri ye daasata
+                    Kalam se baya kar du mere dil ke in alfaso ko 
+                    Armaan hai toh kai sare 
+                    kuch amar kar du toh 
+                    kuch dafan kar du....</p>
+                <button class="speak-button">Speak</button>
+            </div>
+        
+            <div class="poetry" data-poem="Apne sapno ki dor ko kaske baand lena tu Yeh khwab nahi haqueeqat hai inme udaan bhar lena tu..Sazisho se bhari padi hai ye duniya inke irado par pani fer dena tu Yeh zamana bhale tuje zameen par khich le aaye apne panko ko jatak kar asmaan me phir udaan bhar lena tu....">
+                <h2>Sapno ki dor</h2>
+                <img src="https://t4.ftcdn.net/jpg/06/85/00/95/360_F_685009546_fKHV8EO8eR2A5fPZkEHn3S4dynqGq8kL.jpg" alt="Feathers" class="poetry-image">
+                <p>Apne sapno ki dor ko kaske baand lena tu
+                    Yeh khwab nahi haqueeqat hai inme udaan bhar lena tu..
+                    Sazisho se bhari padi hai ye duniya
+                    inke irado par pani fer dena tu 
+                    Yeh zamana bhale tuje zameen par khich le aaye apne panko ko jatak kar asmaan me phir udaan bhar lena tu....</p>
+                <button class="speak-button">Speak</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const synth = window.speechSynthesis;
+        const speakButtons = document.querySelectorAll('.speak-button');
+        const voiceSelect = document.getElementById('voice-select');
+        const rateSlider = document.getElementById('rate');
+        const rateValue = document.getElementById('rate-value');
+
+        // Update rate display
+        rateSlider.addEventListener('input', () => {
+            rateValue.textContent = `${rateSlider.value}x`;
+        });
+
+        // Speak function
+        function speak(poemText, language, rate) {
+            const utterance = new SpeechSynthesisUtterance(poemText);
+
+            // Set voice based on selected language
+            const voices = synth.getVoices();
+            const selectedVoice = voices.find(voice =>
+                language === 'hindi' ? voice.lang === 'hi-IN' : voice.lang === 'en-US' || voice.lang === 'en-GB'
+            );
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+
+            // Set speech rate
+            utterance.rate = rate;
+
+            // Speak the text
+            synth.cancel(); // Stop any ongoing speech
+            synth.speak(utterance);
+        }
+
+        // Handle speak button clicks
+        speakButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const poemText = button.parentElement.getAttribute('data-poem');
+                const language = voiceSelect.value;
+                const rate = parseFloat(rateSlider.value);
+
+                if (poemText) speak(poemText, language, rate);
+            });
+        });
+
+        // Load voices when available
+        window.speechSynthesis.onvoiceschanged = () => {
+            // No specific implementation needed for this example
+        };
+    </script>
+</body>
+</html>
